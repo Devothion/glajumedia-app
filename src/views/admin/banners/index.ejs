@@ -1,0 +1,44 @@
+<h1>Banners</h1>
+<a href="/admin/banners/create" class="btn btn-primary mb-3">Crear Banner</a>
+<table class="table table-hover table-bordered table-responsive">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Descripción</th>
+      <th>Autor</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <% banners.forEach(banner => { %>
+      <tr>
+        <td><%= banner.id %></td>
+        <td><%= banner.titulo %></td>
+        <td><%= banner.descripcion %></td>
+        <td><%= banner.User.username %></td>
+        <td><a href="/admin/banners/update/<%= banner.id %>" class="btn btn-primary">Editar</a>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<%= banner.id %>">Eliminar</button></td>
+      </tr>
+      <div class="modal fade" id="exampleModal<%= banner.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Mensaje de advertencia</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              ¿Desea eliminar este banner? El banner <b><%= banner.titulo %></b> se eliminará de forma permanente.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <form action="/admin/banners/delete/<%= banner.id %>?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </tbody>
+</table>

@@ -1,5 +1,5 @@
 {
-  "name": "Mi Aplicación",
+  "name": "Aplicación Para Encuestas",
   "short_name": "App",
   "description": "Una aplicación PWA hecha con Node.js, para administrar encuestas a usuarios en Glajumedia",
   "start_url": "/",

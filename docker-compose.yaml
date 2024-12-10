@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  nodeapp:
+    image: glajumedia-app
+    networks:
+      - mi_red
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
+          cpus: "1"
+          memory: 2048M
+      labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nodeapp.rule=Host(`test.yumaapp.com`)"
+      - "traefik.http.routers.nodeapp.entrypoints=websecure"
+      - "traefik.http.routers.nodeapp.tls.certresolver=letsencryptresolver"
+      - "traefik.http.routers.nodeapp.priority=1"
+      - "traefik.http.services.nodeapp.loadbalancer.server.port=3000"
+      - "traefik.http.services.nodeapp.loadbalancer.passhostheader=true"
+      - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
+      - "traefik.http.routers.nodeapp.middlewares=sslheader@docker"
+    ports:
+      - "8989:3000"
+
+networks:
+  mi_red:
+    external: true
+    name: mi_red

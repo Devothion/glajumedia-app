@@ -1,9 +1,12 @@
 const { Sequelize } = require("sequelize");
-const path = require("path");
+require("dotenv").config();
 
 const sequelize = new Sequelize({
-    dialect: "sqlite",
-    storage: path.join(__dirname, "database.sqlite"),
+    dialect: process.env.DB_DIALECT || "mysql",
+    host: process.env.DB_HOST || "localhost",
+    username: process.env.DB_USER || "root",
+    password: process.env.DB_PASSWORD || "",
+    database: process.env.DB_NAME || "glajumedia-app",
     logging: false,
 });
 

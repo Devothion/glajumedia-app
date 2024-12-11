@@ -5,3 +5,7 @@ DB_HOST = localhost
 DB_USER = root
 DB_PASSWORD = 
 DB_DATABASE = glajumedia-app
+
+SESSION_SECRET = WcS93tiuqU725dD00vi9yvNLo85LhuU6
+ADMIN_USER = admin
+ADMIN_PASSWORD = admin

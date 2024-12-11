@@ -1,0 +1,21 @@
+<h1><%= __('brand') %></h1>
+<div class="card mb-3" style="max-width: 540px; background-color: <%= brand.colorCode %>;">
+  <div class="row g-0">
+    <div class="col-md-4 d-flex align-items-center justify-content-center">
+      <img src="<%= brand.logoUrl %>" class="img-fluid rounded-start" alt="<%= brand.nombre %>" />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= brand.nombre %></h5>
+        <p class="card-text">
+          Este es el Brand de la pagina web, la vista principal se mostrara conforme se configure esta información.
+        </p>
+        <p class="card-text">
+          <a href="/admin/brands/update" class="btn btn-primary mb-3"
+            ><%= __('edit_brand') %></a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

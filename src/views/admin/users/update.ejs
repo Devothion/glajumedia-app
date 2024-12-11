@@ -1,25 +1,25 @@
 <div class="card">
     <div class="card-header">
-        <h1>Editar Usuario</h1>
+        <h1><%= __('edit_user') %></h1>
     </div>
     <form method="POST" action="/admin/users/update/<%= user.id %>?_method=PUT">
         <div class="card-body">
             <div class="mb-3">
-                <label for="username" class="form-label">Nombre de Usuario</label>
-                <input type="text" id="username" name="username" class="form-control" required value="<%= user.username %>">
+                <label for="username" class="form-label"><%= __('username') %></label>
+                <input type="text" id="username" name="username" class="form-control" value="<%= user.username %>">
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" name="email" class="form-control" required value="<%= user.email %>">
+                <label for="password" class="form-label"><%= __('password') %></label>
+                <input type="password" id="password" name="password" class="form-control">
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Contraseña</label>
-                <input type="password" id="password" name="password" class="form-control" required value="<%= user.password %>">
+                <label for="password_confirm" class="form-label"><%= __('password_confirm') %></label>
+                <input type="password" id="password_confirm" name="password_confirm" class="form-control">
             </div>
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-success">Actualizar</button>
-            <a href="/admin/users" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-success"><%= __('update') %></button>
+            <a href="/admin/users" class="btn btn-danger"><%= __('cancel') %></a>
         </div>
     </form>
 </div>

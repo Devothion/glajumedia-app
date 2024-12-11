@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-    <nav class="navbar bg-primary" data-bs-theme="dark">
+    <nav class="navbar" data-bs-theme="dark" style="background-color: <%= brand.colorCode %>;">
       <div class="container-fluid">
         <a class="navbar-brand ms-4 p-0" href="/">
           <img
-            src="/images/logo_glajumedia.svg"
+            src="<%= brand.logoUrl %>"
             alt="Logo_Glajumedia"
-            width="140"
+            width="auto"
             height="80"
             class="d-inline-block align-text-top"
           />
@@ -42,7 +42,7 @@
           aria-labelledby="offcanvasNavbarLabel"
         >
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Opciones</h5>
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><%= __('options') %></h5>
             <button
               type="button"
               class="btn-close"
@@ -60,7 +60,7 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Elegir Encuesta
+                  <%= __('select_survey') %>
                 </a>
                 <ul class="dropdown-menu">
 
@@ -73,13 +73,34 @@
                       </li>
                     <% }) %>
                   <% } else { %>
-                    <p>No hay encuestas creadas</p>
+                    <li>
+                      <p class="dropdown-item"><%= __('no_surveys') %></p>
+                    </li>
                   <% } %>
                   
                 </ul>
               </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                <%= __('language') %>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="/?lang=es"><%= __('spanish') %></a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/?lang=en"><%= __('english') %></a>
+                  </li>
+                </ul>
+              </li>
               <li class="nav-item">
-                <a class="nav-link" href="/admin">Admin</a>
+                <a class="nav-link" href="/admin"><%= __('admin_panel') %></a>
               </li>
             </ul>
           </div>
@@ -90,10 +111,10 @@
     <main class="container text-center mt-5">
       <figure class="text-center">
         <blockquote class="blockquote">
-          <p><strong>BIENVENIDOS A NUESTRA EMPRESA</strong></p>
+          <p><strong><%= __('welcome') %></strong></p>
         </blockquote>
         <figcaption class="blockquote-footer">
-          Selecciona una encuesta. <cite title="Source Title">Glajumedia</cite>
+          <%= __('select_survey') %> <cite title="Source Title">Glajumedia</cite>
         </figcaption>
       </figure>
       <div class="card mt-4">
@@ -107,7 +128,7 @@
               </li>
             <% }) %>
           <% } else { %>
-            <p class="text-center">No hay encuestas creadas</p>
+            <p class="text-center"><%= __('no_surveys') %></p>
           <% } %>
         </ul>
       </div>
@@ -122,7 +143,7 @@
           height="100"
         />
       <% } else { %>
-        <p>No hay banners creados</p>
+        <p><%= __('no_banners') %></p>
       <% } %>
     </footer>
 

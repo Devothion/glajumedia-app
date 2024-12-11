@@ -2,21 +2,21 @@
   <img src="<%= banner.imageUrl %>" class="card-img-top" alt="<%= banner.titulo %>">
   <form method="POST" action="/admin/banners/update/<%= banner.id %>?_method=PUT" enctype="multipart/form-data">
     <div class="card-body">
-      <h5 class="card-title">Editar Banner</h5>
+      <h5 class="card-title"><%= __('edit_banner') %></h5>
       <div class="mb-3">
-        <label for="titulo" class="form-label">Título</label>
+        <label for="titulo" class="form-label"><%= __('title') %></label>
         <input type="text" id="titulo" name="titulo" class="form-control" required value="<%= banner.titulo %>">
       </div>
       <div class="mb-3">
-        <label for="descripcion" class="form-label">Descripción</label>
+        <label for="descripcion" class="form-label"><%= __('description') %></label>
         <textarea id="descripcion" name="descripcion" class="form-control" required><%= banner.descripcion %></textarea>
       </div>
       <div class="mb-3">
-        <label for="image" class="form-label">Imagen</label>
+        <label for="image" class="form-label"><%= __('image') %></label>
         <input type="file" id="image" name="image" class="form-control" required>
       </div>
       <div class="mb-3">
-        <label for="userId" class="form-label">Autor</label>
+        <label for="userId" class="form-label"><%= __('author') %></label>
         <select id="userId" name="userId" class="form-control" required>
           <% users.forEach(user => { %>
             <option value="<%= user.id %>"><%= user.username %></option>
@@ -25,8 +25,8 @@
       </div>
     </div>
     <div class="card-footer">
-      <button type="submit" class="btn btn-success">Actualizar</button>
-      <a href="/admin/banners" class="btn btn-danger">Cancelar</a>
+      <button type="submit" class="btn btn-success"><%= __('update') %></button>
+      <a href="/admin/banners" class="btn btn-danger"><%= __('cancel') %></a>
     </div>
   </form>
 </div>

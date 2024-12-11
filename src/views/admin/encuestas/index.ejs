@@ -1,13 +1,13 @@
-<h1>Encuestas</h1>
-<a href="/admin/encuestas/create" class="btn btn-primary mb-3">Crear Encuesta</a>
+<h1><%= __('surveys') %></h1>
+<a href="/admin/encuestas/create" class="btn btn-primary mb-3"><%= __('create_survey') %></a>
 <table class="table table-hover table-bordered table-responsive">
   <thead class="table-dark">
     <tr>
-      <th>ID</th>
-      <th>Título</th>
-      <th>Descripción</th>
-      <th>Autor</th>
-      <th>Acciones</th>
+      <th><%= __('id') %></th>
+      <th><%= __('title') %></th>
+      <th><%= __('description') %></th>
+      <th><%= __('author') %></th>
+      <th><%= __('actions') %></th>
     </tr>
   </thead>
   <tbody class="table-group-divider">
@@ -17,23 +17,23 @@
         <td><%= encuesta.titulo %></td>
         <td><%= encuesta.descripcion %></td>
         <td><%= encuesta.User.username %></td>
-        <td><a href="/admin/encuestas/update/<%= encuesta.id %>" class="btn btn-primary">Editar</a>
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<%= encuesta.id %>">Eliminar</button></td>
+        <td><a href="/admin/encuestas/update/<%= encuesta.id %>" class="btn btn-primary"><%= __('edit') %></a>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<%= encuesta.id %>"><%= __('delete') %></button></td>
       </tr>
       <div class="modal fade" id="exampleModal<%= encuesta.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Mensaje de advertencia</h1>
+              <h1 class="modal-title fs-5" id="exampleModalLabel"><%= __('warning_message') %></h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              ¿Desea eliminar esta encuesta? La encuesta <b><%= encuesta.titulo %></b> se eliminará de forma permanente.
+              <%= __('delete_survey_question') %> <b><%= encuesta.titulo %></b> <%= __('delete_survey_question_2') %>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= __('cancel') %></button>
               <form action="/admin/encuestas/delete/<%= encuesta.id %>?_method=DELETE" method="POST">
-                <button type="submit" class="btn btn-danger">Eliminar</button>
+                <button type="submit" class="btn btn-danger"><%= __('delete') %></button>
               </form>
             </div>
           </div>

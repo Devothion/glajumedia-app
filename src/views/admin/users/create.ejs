@@ -1,25 +1,25 @@
 <div class="card">
   <div class="card-header">
-    <h1>Crear Usuario</h1>
+    <h1><%= __('create_user') %></h1>
   </div>
   <form method="POST" action="/admin/users/create">
       <div class="card-body">
       <div class="mb-3">
-        <label for="username" class="form-label">Nombre de Usuario</label>
+        <label for="username" class="form-label"><%= __('username') %></label>
         <input type="text" id="username" name="username" class="form-control" required>
       </div>
       <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" id="email" name="email" class="form-control" required>
+        <label for="password" class="form-label"><%= __('password') %></label>
+        <input type="password" id="password" name="password" class="form-control" required>
       </div>
       <div class="mb-3">
-        <label for="password" class="form-label">Contraseña</label>
-        <input type="password" id="password" name="password" class="form-control" required>
+        <label for="password_confirm" class="form-label"><%= __('password_confirm') %></label>
+        <input type="password" id="password_confirm" name="password_confirm" class="form-control" required>
       </div>
     </div>
     <div class="card-footer">
-      <button type="submit" class="btn btn-success">Guardar</button>
-      <a href="/admin/users" class="btn btn-danger">Cancelar</a>
+      <button type="submit" class="btn btn-success"><%= __('save') %></button>
+      <a href="/admin/users" class="btn btn-danger"><%= __('cancel') %></a>
     </div>
   </form>
 </div>

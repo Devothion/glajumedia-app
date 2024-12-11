@@ -1,12 +1,11 @@
-<h1>Usuarios</h1>
-<a href="/admin/users/create" class="btn btn-primary mb-3">Crear Usuario</a>
+<h1><%= __('users') %></h1>
+<a href="/admin/users/create" class="btn btn-primary mb-3"><%= __('create_user') %></a>
 <table class="table table-hover table-bordered table-responsive">
   <thead class="table-dark">
     <tr>
-      <th>ID</th>
-      <th>Username</th>
-      <th>Email</th>
-      <th>Acciones</th>
+      <th><%= __('id') %></th>
+      <th><%= __('username') %></th>
+      <th><%= __('actions') %></th>
     </tr>
   </thead>
   <tbody class="table-group-divider">
@@ -14,24 +13,23 @@
       <tr>
         <td><%= user.id %></td>
         <td><%= user.username %></td>
-        <td><%= user.email %></td>
-        <td><a href="/admin/users/update/<%= user.id %>" class="btn btn-primary">Editar</a>
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<%= user.id %>">Eliminar</button></td>
+        <td><a href="/admin/users/update/<%= user.id %>" class="btn btn-primary"><%= __('edit') %></a>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<%= user.id %>"><%= __('delete') %></button></td>
       </tr>
       <div class="modal fade" id="exampleModal<%= user.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Mensaje de advertencia</h1>
+              <h1 class="modal-title fs-5" id="exampleModalLabel"><%= __('warning_message') %></h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              ¿Desea eliminar el usuario? El usuario <b><%= user.username %></b> se eliminará de forma permanente.
+              <%= __('delete_user_question') %> <b><%= user.username %></b> <%= __('delete_user_question_2') %>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><%= __('cancel') %></button>
               <form action="/admin/users/delete/<%= user.id %>?_method=DELETE" method="POST">
-                <button type="submit" class="btn btn-danger">Eliminar</button>
+                <button type="submit" class="btn btn-danger"><%= __('delete') %></button>
               </form>
             </div>
           </div>

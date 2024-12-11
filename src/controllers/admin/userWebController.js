@@ -10,8 +10,11 @@ exports.createUser = async (req, res) => {
 };
 
 exports.storeUser = async (req, res) => {
-    const { username, email, password } = req.body;
-    await User.create({ username, email, password });
+    const { username, password, password_confirm } = req.body;
+    if (password !== password_confirm) {
+        return res.redirect("/admin/users/create");
+    }
+    await User.create({ username, password });
     res.redirect("/admin/users");
 };
 
@@ -23,10 +26,12 @@ exports.editUser = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
     const { id } = req.params;
-    const { username, email, password } = req.body;
+    const { username, password, password_confirm } = req.body;
+    if (password !== password_confirm) {
+        return res.redirect(`/admin/users/update/${id}`);
+    }
     const user = await User.findByPk(id);
     user.username = username;
-    user.email = email;
     user.password = password;
     await user.save();
     res.redirect("/admin/users");

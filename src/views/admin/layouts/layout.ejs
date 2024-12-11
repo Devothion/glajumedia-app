@@ -13,23 +13,26 @@
   </head>
   <body>
     <nav
-      class="navbar navbar-expand-lg bg-dark border-bottom border-body"
+      class="navbar navbar-expand bg-dark border-bottom border-body"
       data-bs-theme="dark"
     >
       <div class="container-fluid">
-        <a class="navbar-brand" href="/admin">Admin System</a>
+        <a class="navbar-brand" href="/admin"><%= __('admin_system') %></a>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="/admin/users">Usuarios</a>
+            <a class="nav-link" href="/admin/users"><%= __('users') %></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin/banners">Banners</a>
+            <a class="nav-link" href="/admin/banners"><%= __('banners') %></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin/encuestas">Encuestas</a>
+            <a class="nav-link" href="/admin/encuestas"><%= __('surveys') %></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/">Dashboard</a>
+            <a class="nav-link" href="/admin/brands"><%= __('brand') %></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/logout"><%= __('logout') %></a>
           </li>
         </ul>
       </div>

@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-    <nav class="navbar bg-primary" data-bs-theme="dark">
+    <nav class="navbar" data-bs-theme="dark" style="background-color: <%= brand.colorCode %>;">
       <div class="container-fluid">
         <a class="navbar-brand ms-4 p-0" href="/">
           <img
-            src="/images/logo_glajumedia.svg"
+            src="<%= brand.logoUrl %>"
             alt="Logo_Glajumedia"
-            width="140"
+            width="auto"
             height="80"
             class="d-inline-block align-text-top"
           />
@@ -27,7 +27,7 @@
           <% if (encuesta && banner.titulo) { %>
             <div class="text-white display-6 me-4"><%= encuesta.titulo %></div>
           <% } else { %>
-            <p>No hay encuestas creadas</p>
+            <p><%= __('no_surveys') %></p>
           <% } %>
           <button
             class="navbar-toggler"
@@ -47,7 +47,7 @@
           aria-labelledby="offcanvasNavbarLabel"
         >
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Opciones</h5>
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><%= __('options') %></h5>
             <button
               type="button"
               class="btn-close"
@@ -65,20 +65,47 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Elegir Encuesta
+                  <%= __('select_survey') %>
                 </a>
                 <ul class="dropdown-menu">
-                  <% encuestas.forEach(encuesta => { %>
+
+                  <% if (banner && banner.imageUrl) { %>
+                    <% encuestas.forEach(encuesta => { %>
+                    <li>
+                      <a class="dropdown-item" href="/<%= encuesta.id %>"
+                        ><%= encuesta.titulo %></a
+                      >
+                    </li>
+                    <% }) %>
+                  <% } else { %>
+                    <li>
+                      <p class="dropdown-item"><%= __('no_surveys') %></p>
+                    </li>
+                  <% } %>
+
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                <%= __('language') %>
+                </a>
+                <ul class="dropdown-menu">
                   <li>
-                    <a class="dropdown-item" href="/<%= encuesta.id %>"
-                      ><%= encuesta.titulo %></a
-                    >
+                    <a class="dropdown-item" href="/?lang=es"><%= __('spanish') %></a>
                   </li>
-                  <% }) %>
+                  <li>
+                    <a class="dropdown-item" href="/?lang=en"><%= __('english') %></a>
+                  </li>
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/admin">Admin</a>
+                <a class="nav-link" href="/admin"><%= __('admin_panel') %></a>
               </li>
             </ul>
           </div>
@@ -89,7 +116,7 @@
     <% if (encuesta && encuesta.codigo) { %>
       <main class="container text-center mt-4"><%- encuesta.codigo %></main>
     <% } else { %>
-      <p>No hay encuestas creadas</p>
+      <p><%= __('no_surveys') %></p>
     <% } %>
 
     <footer class="bg-light text-center pt-3">
@@ -101,7 +128,7 @@
           height="100"
         />
       <% } else { %>
-        <p>No hay banners creados</p>
+        <p><%= __('no_banners') %></p>
       <% } %>
     </footer>
 

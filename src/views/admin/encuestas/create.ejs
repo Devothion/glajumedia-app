@@ -1,23 +1,23 @@
 <div class="card">
   <div class="card-header">
-    <h1>Crear Encuesta</h1>
+    <h1><%= __('create_survey') %></h1>
   </div>
   <form method="POST" action="/admin/encuestas/create">
     <div class="card-body">
         <div class="mb-3">
-          <label for="titulo" class="form-label">Titulo</label>
+          <label for="titulo" class="form-label"><%= __('title') %></label>
           <input type="text" id="titulo" name="titulo" class="form-control" required>
         </div>
         <div class="mb-3">
-          <label for="descripcion" class="form-label">Descripción</label>
+          <label for="descripcion" class="form-label"><%= __('description') %></label>
           <textarea name="descripcion" id="descripcion" class="form-control" required rows="2"></textarea>
         </div>
         <div class="mb-3">
-          <label for="codigo" class="form-label">Código</label>
+          <label for="codigo" class="form-label"><%= __('survey_monkey_code') %></label>
           <textarea name="codigo" id="codigo" class="form-control" required rows="3"></textarea>
         </div>
         <div class="mb-3">
-          <label for="userId" class="form-label">Autor</label>
+          <label for="userId" class="form-label"><%= __('author') %></label>
           <select id="userId" name="userId" class="form-control" required>
             <% users.forEach(user => { %>
               <option value="<%= user.id %>"><%= user.username %></option>
@@ -26,8 +26,8 @@
         </div>
       </div>
       <div class="card-footer">
-        <button type="submit" class="btn btn-success">Guardar</button>
-        <a href="/admin/encuestas" class="btn btn-danger">Cancelar</a>
+        <button type="submit" class="btn btn-success"><%= __('save') %></button>
+        <a href="/admin/encuestas" class="btn btn-danger"><%= __('cancel') %></a>
       </div>
   </form>
 </div>

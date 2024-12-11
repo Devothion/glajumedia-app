@@ -1,23 +1,23 @@
 <div class="card">
   <div class="card-header">
-    <h1>Crear Banner</h1>
+    <h1><%= __('create_banner') %></h1>
   </div>
   <form method="POST" action="/admin/banners/create" enctype="multipart/form-data">
     <div class="card-body">
         <div class="mb-3">
-          <label for="titulo" class="form-label">Título</label>
+          <label for="titulo" class="form-label"><%= __('title') %></label>
           <input type="text" id="titulo" name="titulo" class="form-control" required>
         </div>
         <div class="mb-3">
-          <label for="descripcion" class="form-label">Descripción</label>
+          <label for="descripcion" class="form-label"><%= __('description') %></label>
           <textarea id="descripcion" name="descripcion" class="form-control" required></textarea>
         </div>
         <div class="mb-3">
-          <label for="image" class="form-label">Imagen</label>
+          <label for="image" class="form-label"><%= __('image') %></label>
           <input type="file" id="image" name="image" class="form-control" required>
         </div>
         <div class="mb-3">
-          <label for="userId" class="form-label">Autor</label>
+          <label for="userId" class="form-label"><%= __('author') %></label>
           <select id="userId" name="userId" class="form-control" required>
             <% users.forEach(user => { %>
               <option value="<%= user.id %>"><%= user.username %></option>
@@ -25,8 +25,8 @@
           </select>
         </div>
       <div class="card-footer">
-        <button type="submit" class="btn btn-success">Guardar</button>
-        <a href="/admin/banners" class="btn btn-danger">Cancelar</a>
+        <button type="submit" class="btn btn-success"><%= __('save') %></button>
+        <a href="/admin/banners" class="btn btn-danger"><%= __('cancel') %></a>
       </div>
     </div>
   </form>

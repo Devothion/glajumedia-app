@@ -21,13 +21,18 @@ User.init(
   }
 );
 
-User.addHook("afterSync", async (options) => {
+User.addHook("afterSync", async function(options) {
   try {
     const count = await User.count();
     if (count === 0) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(
+        process.env.ADMIN_PASSWORD,
+        salt
+      );
       await User.create({
         username: process.env.ADMIN_USER,
-        password: process.env.ADMIN_PASSWORD,
+        password: hashedPassword
       });
     }
   } catch (error) {
@@ -35,7 +40,7 @@ User.addHook("afterSync", async (options) => {
   }
 });
 
-User.beforeCreate(async (user) => {
+User.beforeCreate(async function(user) {
   try {
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
@@ -44,7 +49,7 @@ User.beforeCreate(async (user) => {
   }
 });
 
-User.beforeUpdate(async (user) => {
+User.beforeUpdate(async function(user) {
   try {
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);

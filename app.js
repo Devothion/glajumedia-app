@@ -1,5 +1,7 @@
 const express = require("express");
 const session = require("express-session");
+const sequelize = require("./src/config/database");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const passport = require("./src/config/passport");
 const flash = require("connect-flash");
 const expressLayouts = require("express-ejs-layouts");
@@ -29,11 +31,20 @@ const indexRoutes = require("./src/routes/web/indexWebRoutes");
 
 const app = express();
 
+const sessionStore = new SequelizeStore({
+  db: sequelize,
+});
+
+sessionStore.sync();
+
+// Configuración de express-session
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
+    store: sessionStore,
     resave: false,
     saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }// 1 día
   })
 );
 

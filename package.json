@@ -5,7 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "rebuild-bcrypt": "npm rebuild bcrypt --build-from-source",
+    "install-bycrypt": "npm install bcrypt@5.1.0"
   },
   "keywords": [],
   "author": "",

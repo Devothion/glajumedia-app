@@ -21,23 +21,35 @@ User.init(
   }
 );
 
+User.addHook("afterSync", async (options) => {
+  try {
+    const count = await User.count();
+    if (count === 0) {
+      await User.create({
+        username: process.env.ADMIN_USER,
+        password: process.env.ADMIN_PASSWORD,
+      });
+    }
+  } catch (error) {
+    console.error("Error en el hook afterSync:", error);
+  }
+});
+
 User.beforeCreate(async (user) => {
-  const salt = await bcrypt.genSalt(10);
-  user.password = await bcrypt.hash(user.password, salt);
+  try {
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+  } catch (error) {
+    console.error("Error en el hook beforeCreate:", error);
+  }
 });
 
 User.beforeUpdate(async (user) => {
-  const salt = await bcrypt.genSalt(10);
-  user.password = await bcrypt.hash(user.password, salt);
-});
-
-User.addHook("afterSync", async (options) => {
-  const count = await User.count();
-  if (count === 0) {
-    await User.create({
-      username: process.env.ADMIN_USER,
-      password: process.env.ADMIN_PASSWORD,
-    });
+  try {
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+  } catch (error) {
+    console.error("Error en el hook beforeUpdate:", error);
   }
 });
 

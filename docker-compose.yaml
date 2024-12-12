@@ -3,6 +3,8 @@ version: '3'
 services:
   nodeapp:
     image: glajumedia-app
+    depends_on:
+      - db
     networks:
       - mi_red
     deploy:
@@ -17,7 +19,7 @@ services:
           memory: 2048M
       labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.nodeapp.rule=Host(`test.yumaapp.com`)"
+      - "traefik.http.routers.nodeapp.rule=Host(`pwa-project.gmedia.pe`)"
       - "traefik.http.routers.nodeapp.entrypoints=websecure"
       - "traefik.http.routers.nodeapp.tls.certresolver=letsencryptresolver"
       - "traefik.http.routers.nodeapp.priority=1"
@@ -27,8 +29,30 @@ services:
       - "traefik.http.routers.nodeapp.middlewares=sslheader@docker"
     ports:
       - "8989:3000"
+    environment:
+      DB_DIALECT: mysql
+      DB_HOST: db  # Nombre del servicio de MySQL
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_DATABASE: glajumedia-app
+      SESSION_SECRET: WcS93tiuqU725dD00vi9yvNLo85LhuU6
+      ADMIN_USER: admin
+      ADMIN_PASSWORD: admin
+
+  db:
+    image: mysql:8.0
+    networks:
+      - mi_red
+    environment:
+      MYSQL_ROOT_PASSWORD: root # Contraseña vacía para root (ajusta si es necesario)
+      MYSQL_DATABASE: glajumedia-app
+    volumes:
+      - db_data:/var/lib/mysql # Persistencia de datos
 
 networks:
   mi_red:
     external: true
     name: mi_red
+
+volumes:
+  db_data:

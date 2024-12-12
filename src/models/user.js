@@ -25,14 +25,9 @@ User.addHook("afterSync", async function(options) {
   try {
     const count = await User.count();
     if (count === 0) {
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(
-        process.env.ADMIN_PASSWORD,
-        salt
-      );
       await User.create({
         username: process.env.ADMIN_USER,
-        password: hashedPassword
+        password: process.env.ADMIN_PASSWORD,
       });
     }
   } catch (error) {

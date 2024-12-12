@@ -32,8 +32,7 @@
     "mysql2": "^3.11.5",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
-    "sequelize": "^6.37.5",
-    "sqlite3": "^5.1.7"
+    "sequelize": "^6.37.5"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"

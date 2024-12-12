@@ -64,7 +64,7 @@
                 </a>
                 <ul class="dropdown-menu">
 
-                  <% if (banner && banner.imageUrl) { %>
+                  <% if (encuestas.length) { %>
                     <% encuestas.forEach(encuesta => { %>
                       <li>
                         <a class="dropdown-item" href="/<%= encuesta.id %>"
@@ -119,7 +119,7 @@
       </figure>
       <div class="card mt-4">
         <ul class="list-group list-group-flush">
-          <% if (encuestas) { %>
+          <% if (encuestas.length) { %>
             <% encuestas.forEach(encuesta => { %>
               <li class="list-group-item">
                  <a class="dropdown-item" href="/<%= encuesta.id %>"

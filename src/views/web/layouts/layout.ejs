@@ -24,7 +24,7 @@
           />
         </a>
         <div class="d-flex">
-          <% if (encuesta && banner.titulo) { %>
+          <% if (encuesta && encuesta.titulo) { %>
             <div class="text-white display-6 me-4"><%= encuesta.titulo %></div>
           <% } else { %>
             <p><%= __('no_surveys') %></p>
@@ -69,7 +69,7 @@
                 </a>
                 <ul class="dropdown-menu">
 
-                  <% if (banner && banner.imageUrl) { %>
+                  <% if (encuestas) { %>
                     <% encuestas.forEach(encuesta => { %>
                     <li>
                       <a class="dropdown-item" href="/<%= encuesta.id %>"
@@ -113,7 +113,7 @@
       </div>
     </nav>
 
-    <% if (encuesta && encuesta.codigo) { %>
+    <% if (encuesta) { %>
       <main class="container text-center mt-4"><%- encuesta.codigo %></main>
     <% } else { %>
       <p><%= __('no_surveys') %></p>

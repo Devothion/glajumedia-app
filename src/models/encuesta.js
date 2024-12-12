@@ -11,7 +11,7 @@ const Encuesta = sequelize.define("Encuesta", {
         allowNull: false,
     },
     codigo: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
     },
     userId: {
